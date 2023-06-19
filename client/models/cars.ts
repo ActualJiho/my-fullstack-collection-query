@@ -1,5 +1,10 @@
-export interface Post {
+export interface CarModel {
   id: number
   brand: string
-  car: string
+  name: string
+}
+
+export interface CarModelData {
+  brand: string
+  name: string
 }

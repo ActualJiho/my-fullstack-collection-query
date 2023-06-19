@@ -6,7 +6,7 @@ exports.up = function (knex) {
   return knex.schema.createTable('cars', (table) => {
     table.integer('id').primary()
     table.string('brand')
-    table.string('car')
+    table.string('name')
   })
 }
 
