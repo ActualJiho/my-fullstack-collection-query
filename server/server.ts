@@ -1,6 +1,6 @@
 import express from 'express'
 import path from 'path'
-
+import carsRoutes from './routes/cars'
 const server = express()
 
 server.use(express.json())
@@ -12,4 +12,5 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+server.use('/api/v1/cars', carsRoutes)
 export default server
