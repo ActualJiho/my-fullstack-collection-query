@@ -38,12 +38,13 @@ function App() {
       <section className="main">
         <ul>
           {carData.map((car) => (
-            <li key={car.id}>
-              <p>{car.name}</p>
-            </li>
+            <CarForm key={car.id} id={car.id} name={car.name} />
+            // <li key={car.id}>
+            //   <p>{car.name}</p>
+            // </li>
+            // <CarForm />
           ))}
         </ul>
-        <CarForm />
       </section>
     </>
   )

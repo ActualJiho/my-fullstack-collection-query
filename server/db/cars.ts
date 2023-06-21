@@ -1,15 +1,26 @@
 import connection from './connection'
-import { CarModelData } from '../../client/models/cars'
+import { CarModel, CarModelData } from '../../client/models/cars'
 
-export function getAllCars(db = connection) {
-  return db('cars').select('*')
+export async function getAllCars(db = connection) {
+  const allCars = await db('cars').select('*')
+  return allCars
 }
 
 export async function getCarsById(id: number, db = connection) {
-  return db('cars').where({ id }).first()
+  const carById = await db('cars').where('id', id).select().first()
+  return carById
 }
 
-export async function addCar(newCar: CarModelData, db = connection) {
-  const [car] = await db('cars').insert(newCar).returning('*')
-  return car
+export async function addCar(
+  newCar: CarModelData,
+  db = connection
+): Promise<CarModel> {
+  const [newCarData] = await db('cars').insert(newCar).returning('*')
+  return newCarData
+}
+
+export async function deleteCar(id: number, db = connection) {
+  console.log('db delete function called')
+  const deleteCarById = await db('cars').where('id', id).delete()
+  return deleteCarById
 }
