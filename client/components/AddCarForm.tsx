@@ -24,7 +24,7 @@ export default function AddCarForm() {
     setForm(newForm)
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     addCarMutation.mutate(form)
     setForm(initialFormData)
