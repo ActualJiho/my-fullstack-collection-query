@@ -5,6 +5,8 @@ const server = express()
 
 server.use(express.json())
 
+server.use('/api/v1/cars', carsRoutes)
+
 if (process.env.NODE_ENV === 'production') {
   server.use('/assets', express.static(path.resolve(__dirname, '../assets')))
   server.get('*', (req, res) => {
@@ -12,5 +14,4 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-server.use('/api/v1/cars', carsRoutes)
 export default server
