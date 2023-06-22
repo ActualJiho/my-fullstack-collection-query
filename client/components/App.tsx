@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { getCars } from '../apis/cars'
 import { useQuery } from '@tanstack/react-query'
 import { CarModel } from '../models/cars'
