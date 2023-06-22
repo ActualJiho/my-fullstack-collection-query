@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { getCars } from '../apis/cars'
 import { useQuery } from '@tanstack/react-query'
 import { CarModel } from '../models/cars'
-import CarForm from './CarForm'
+import DeleteCar from './DeleteCar'
+import AddCarForm from './AddCarForm'
 
 function App() {
   //useEffect -- for practise
@@ -38,13 +39,10 @@ function App() {
       <section className="main">
         <ul>
           {carData.map((car) => (
-            <CarForm key={car.id} id={car.id} name={car.name} />
-            // <li key={car.id}>
-            //   <p>{car.name}</p>
-            // </li>
-            // <CarForm />
+            <DeleteCar key={car.id} id={car.id} name={car.name} />
           ))}
         </ul>
+        <AddCarForm />
       </section>
     </>
   )
