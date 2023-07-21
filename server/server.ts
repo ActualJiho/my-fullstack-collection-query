@@ -6,6 +6,7 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/v1/plates', platesRoutes)
+server.use(express.static(path.join(__dirname, 'public')))
 
 if (process.env.NODE_ENV === 'production') {
   server.use('/assets', express.static(path.resolve(__dirname, '../assets')))

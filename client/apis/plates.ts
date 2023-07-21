@@ -8,6 +8,7 @@ export async function getPlates(): Promise<PlateModel[]> {
 
 export async function addPlate(newPlate: PlateModelData): Promise<PlateModel> {
   const response = await request.post('/api/v1/plates').send(newPlate)
+  console.log(response.body)
   return response.body
 }
 

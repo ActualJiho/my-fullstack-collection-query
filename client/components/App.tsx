@@ -1,6 +1,5 @@
 import { getPlates } from '../apis/plates'
 import { useQuery } from '@tanstack/react-query'
-import { PlateModel } from '../models/plates'
 import DeleteCar from './DeleteCar'
 import AddCarForm from './AddCarForm'
 
@@ -31,12 +30,13 @@ function App() {
   }
 
   return (
-    <>
-      <header className="header">
-        <h1>Personalised Plates</h1>
+    <div className="bg-sky-950 text-neutral-100">
+      <header className="text-center font-light text-5xl">
+        <h1 className="py-8">🚙 Personalised Plates 🚗</h1>
       </header>
-      <section className="main">
-        <ul>
+      <AddCarForm />
+      <section className="flex flex-col gap-8 p-20">
+        <ul className="text-center m-auto">
           {carData.map((car) => (
             <DeleteCar
               key={car.id}
@@ -46,9 +46,8 @@ function App() {
             />
           ))}
         </ul>
-        <AddCarForm />
       </section>
-    </>
+    </div>
   )
 }
 

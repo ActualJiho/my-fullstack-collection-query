@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.integer('id').primary()
     table.string('plate')
     table.string('location')
+    table.string('imgUrl')
   })
 }
 

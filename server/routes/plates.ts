@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 
 // add
 router.post('/', async (req, res) => {
+  console.log('db add route called')
   try {
     const newPlateData = req.body
     const newPlate = await db.addPlate(newPlateData)

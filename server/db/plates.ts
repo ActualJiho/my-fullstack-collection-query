@@ -15,6 +15,7 @@ export async function addPlate(
   newPlate: PlateModelData,
   db = connection
 ): Promise<PlateModel> {
+  console.log('db add function called')
   const [newPlateData] = await db('plates').insert(newPlate).returning('*')
   return newPlateData
 }
