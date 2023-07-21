@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addCar } from '../apis/cars'
+import { addPlate } from '../apis/plates'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { CarModelData } from '../models/cars'
+import { PlateModelData } from '../models/plates'
 const initialFormData = {
-  brand: '',
-  name: '',
+  plate: '',
+  location: '',
 }
 
 export default function AddCarForm() {
-  const [form, setForm] = useState<CarModelData>(initialFormData)
+  const [form, setForm] = useState<PlateModelData>(initialFormData)
 
   const queryClient = useQueryClient()
 
-  const addCarMutation = useMutation(addCar, {
+  const addPlateMutation = useMutation(addPlate, {
     onSuccess: () => {
       queryClient.invalidateQueries(['car'])
     },
@@ -26,43 +26,43 @@ export default function AddCarForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    addCarMutation.mutate(form)
+    addPlateMutation.mutate(form)
     setForm(initialFormData)
   }
 
-  if (addCarMutation.isError) {
-    return <div>There was an error trying to add your car</div>
+  if (addPlateMutation.isError) {
+    return <div>There was an error trying to add your plate</div>
   }
 
-  if (addCarMutation.isLoading) {
-    return <div>Adding your car</div>
+  if (addPlateMutation.isLoading) {
+    return <div>Adding your plate</div>
   }
 
   return (
     <form onSubmit={handleSubmit} aria-label="Add Car Form">
       <p>
-        <label htmlFor="brand">Brand:</label>
+        <label htmlFor="plate">Plate:</label>
         <br />
         <input
-          id="brand"
+          id="plate"
           onChange={handleChange}
-          value={form.brand}
-          name="brand"
+          value={form.plate}
+          name="plate"
           required
         />
       </p>
       <p>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Location:</label>
         <br />
         <input
-          id="name"
+          id="location"
           onChange={handleChange}
-          value={form.name}
-          name="name"
+          value={form.location}
+          name="location"
           required
         />
       </p>
-      <button type="submit">Add a Car</button>
+      <button type="submit">Add a Plate</button>
     </form>
   )
 }

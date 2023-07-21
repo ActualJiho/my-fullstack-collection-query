@@ -1,6 +1,6 @@
-import { getCars } from '../apis/cars'
+import { getPlates } from '../apis/plates'
 import { useQuery } from '@tanstack/react-query'
-import { CarModel } from '../models/cars'
+import { PlateModel } from '../models/plates'
 import DeleteCar from './DeleteCar'
 import AddCarForm from './AddCarForm'
 
@@ -20,7 +20,7 @@ function App() {
   // }, [])
 
   //useQeury
-  const { data: carData, isError, isLoading } = useQuery(['car'], getCars)
+  const { data: carData, isError, isLoading } = useQuery(['plate'], getPlates)
 
   if (isError) {
     return <div>ERROR</div>
@@ -33,12 +33,17 @@ function App() {
   return (
     <>
       <header className="header">
-        <h1>My Cars</h1>
+        <h1>Personalised Plates</h1>
       </header>
       <section className="main">
         <ul>
           {carData.map((car) => (
-            <DeleteCar key={car.id} id={car.id} name={car.name} />
+            <DeleteCar
+              key={car.id}
+              id={car.id}
+              location={car.location}
+              plate={car.plate}
+            />
           ))}
         </ul>
         <AddCarForm />

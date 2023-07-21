@@ -1,39 +1,42 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addCar, deleteCar } from '../apis/cars'
+import { addPlate, deletePlate } from '../apis/plates'
 
 interface Props {
   id: number
-  name: string
+  plate: string
+  location: string
 }
 
-export default function DeleteCar({ id, name }: Props) {
+export default function DeletePlate({ id, plate, location }: Props) {
   const queryClient = useQueryClient()
 
-  const deleteCarMutation = useMutation(deleteCar, {
+  const deletePlateMutation = useMutation(deletePlate, {
     onSuccess: () => {
-      console.log('delete car mutation called')
-      queryClient.invalidateQueries(['car'])
+      console.log('delete plate mutation called')
+      queryClient.invalidateQueries(['plate'])
     },
   })
 
   const handleDelete = () => {
     console.log(`handleDelete clicked: ${id}`)
-    deleteCarMutation.mutate({ id })
+    deletePlateMutation.mutate({ id })
   }
 
-  if (deleteCarMutation.isError) {
-    return <div>There was an error trying to delete your car</div>
+  if (deletePlateMutation.isError) {
+    return <div>There was an error trying to delete your plate</div>
   }
 
-  if (deleteCarMutation.isLoading) {
-    return <div>delete your car</div>
+  if (deletePlateMutation.isLoading) {
+    return <div>delete your plate</div>
   }
 
   return (
     <>
       <p>{id}.</p>
       <div>
-        Car: {name}
+        <p>Plate: {plate}</p>
+        <p>Location: {location}</p>
+
         <span>
           <button onClick={handleDelete}>Delete</button>
         </span>

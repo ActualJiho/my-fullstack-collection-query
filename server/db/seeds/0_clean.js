@@ -1,3 +1,3 @@
 exports.seed = (knex) => {
-  return knex('cars').del()
+  return knex('plates').del()
 }
